@@ -1,0 +1,38 @@
+syntax = "v1"
+
+info (
+	title: "go-project"
+	desc: "go-project"
+	author: "JK407"
+	email: "1467511770@qq.com"
+)
+
+type (
+	UserRegisterReq {
+		Username string `json:"username"`
+		Password string `json:"password"`
+		Email    string `json:"email"`
+		Phone    string `json:"phone"`
+		RoleType int    `json:"role_type"`
+	}
+)
+
+type (
+	UserRegisterData {
+		UserId int64 `json:"user_id"`
+	}
+)
+
+type (
+	UserRegisterRes {
+		Code int              `json:"code"`
+		Msg  string           `json:"msg"`
+		Data UserRegisterData `json:"data"`
+	}
+)
+
+service service-api {
+	@handler UserRegister //用户注册
+	post /users/register(UserRegisterReq) returns(UserRegisterRes)
+
+}

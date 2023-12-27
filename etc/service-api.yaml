@@ -1,0 +1,15 @@
+Name: services-api
+Host: 0.0.0.0
+Port: 8888
+
+
+
+Mysql:
+  DSN: "remote_database:wEDk778fHM7bJSBh@tcp(101.34.86.41:3306)/remote_database?charset=utf8&parseTime=True&loc=Local"
+
+Redis:
+  addr: 127.0.0.1:6379
+  password:
+  DB: 1
+
+

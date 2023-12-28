@@ -4,8 +4,9 @@
 
 package model
 
-const TableNameUser = "users"
+import "go_project/internal/constants"
 
+const TableNameUser = "users"
 
 // User 用户表
 type User struct {
@@ -15,7 +16,7 @@ type User struct {
 	Email     string `gorm:"column:email;type:varchar(100);not null;comment:邮箱" json:"email"`                       // 邮箱
 	Phone     string `gorm:"column:phone;type:varchar(50);not null;comment:手机号" json:"phone"`                       // 手机号
 	Points    int64  `gorm:"column:points;type:int(11);not null;comment:积分" json:"points"`                          // 积分
-	RoleType  int64  `gorm:"column:role_type;type:int(11);not null;comment:角色类型:1学生，2管理员" json:"role_type"`     // 角色类型:1管理员、2教师、3学生
+	RoleType  int64  `gorm:"column:role_type;type:int(11);not null;comment:角色类型:1学生，2管理员" json:"role_type"`         // 角色类型:1学生，2管理员
 	CreatedAt int64  `gorm:"column:created_at;type:int(11);not null;comment:创建时间" json:"created_at"`                // 创建时间
 	UpdatedAt int64  `gorm:"column:updated_at;type:int(11);not null;comment:更新时间" json:"updated_at"`                // 更新时间
 	Status    int64  `gorm:"column:status;type:int(11);not null;comment:状态:0正常、1禁用" json:"status"`                  // 状态:0正常、1禁用
@@ -24,4 +25,16 @@ type User struct {
 // TableName User's table name
 func (*User) TableName() string {
 	return TableNameUser
+}
+
+func GetRoleType(roleyType int64) (string, error) {
+	switch roleyType {
+	case constants.StudentRole:
+		return "学生", nil
+	case constants.AdminRole:
+		return "管理员", nil
+	default:
+		return constants.RoleTypeNotExist.Annotate, nil
+	}
+
 }

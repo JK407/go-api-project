@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/zeromicro/go-zero v1.6.1
-	gopkg.in/yaml.v3 v3.0.1
+	golang.org/x/crypto v0.16.0
 	gorm.io/driver/mysql v1.5.2
 	gorm.io/gen v0.3.24
 	gorm.io/gorm v1.25.5

@@ -1,6 +1,6 @@
 syntax = "v1"
 
-info (
+info(
 	title: "go-project"
 	desc: "go-project"
 	author: "JK407"
@@ -15,24 +15,295 @@ type (
 		Phone    string `json:"phone"`
 		RoleType int    `json:"role_type"`
 	}
+
+	UserLoginReq {
+		Phone    string `json:"phone"`
+		Password string `json:"password"`
+	}
+	UserUpdatePasswordReq {
+		Phone       string `json:"phone"`
+		Password    string `json:"password"`
+		NewPassword string `json:"new_password"`
+	}
+
+	AdminDeleteUserByIdReq {
+		UserId   int64  `json:"user_id"`
+		Phone    string `json:"phone"`
+		Password string `json:"password"`
+	}
+
+	GetUserListReq {
+		Page    int    `json:"page"`
+		Size    int    `json:"size"`
+		Keyword string `json:"keyword"`
+	}
+	AdminAddCourseReq {
+		CourseName  string  `json:"course_name"`
+		Description string  `json:"description"`
+		Price       float64 `json:"price"`
+		Phone       string  `json:"phone"`
+		Password    string  `json:"password"`
+	}
+	AdminUpdateCourseReq {
+		Phone    string  `json:"phone"`
+		Password string  `json:"password"`
+		Price    float64 `json:"price"`
+		CourseId int     `json:"course_id"`
+	}
+
+	AdminDelCourseReq {
+		Phone    string `json:"phone"`
+		Password string `json:"password"`
+		CourseId int    `json:"course_id"`
+	}
+	GetCourseListReq {
+		Page    int    `json:"page"`
+		Size    int    `json:"size"`
+		Keyword string `json:"keyword"`
+	}
+	AdminAddCategoryReq {
+		Phone        string `json:"phone"`
+		Password     string `json:"password"`
+		CategoryName string `json:"category_name"`
+	}
+	AdminUpdateCategoryReq {
+		Phone        string `json:"phone"`
+		Password     string `json:"password"`
+		CategoryId   int    `json:"category_id"`
+		CategoryName string `json:"category_name"`
+	}
+	AdminBindCourseCategoryReq {
+		Phone      string `json:"phone"`
+		Password   string `json:"password"`
+		CourseId   int    `json:"course_id"`
+		CategoryId int    `json:"category_id"`
+	}
+	AdminDelCategoryReq {
+		Phone      string `json:"phone"`
+		Password   string `json:"password"`
+		CategoryId int    `json:"category_id"`
+	}
+	GetCategoryListReq {
+		Page    int    `json:"page"`
+		Size    int    `json:"size"`
+		Keyword string `json:"keyword"`
+	}
+	PlaceOrderReq {
+		Phone         string `json:"phone"`
+		Password      string `json:"password"`
+		CourseId      int64  `json:"course_id"`
+		PurchaseCount int64  `json:"purchase_count"`
+	}
+	GetOrderListReq {
+		Page int `json:"page"`
+		Size int `json:"size"`
+	}
+	CancelOrderReq {
+		Phone    string `json:"phone"`
+		Password string `json:"password"`
+		OrderId  int64  `json:"order_id"`
+	}
+	OrderInfoReq {
+		Phone    string `json:"phone"`
+		Password string `json:"password"`
+		OrderId  int64  `json:"order_id"`
+	}
 )
 
 type (
 	UserRegisterData {
 		UserId int64 `json:"user_id"`
 	}
+	UserData {
+		UserId   int64    `json:"user_id"`
+		Username string   `json:"username"`
+		Email    string   `json:"email"`
+		Phone    string   `json:"phone"`
+		Role     RoleData `json:"role"`
+	}
+	RoleData {
+		RoleName string `json:"role_name"`
+		RoleType int    `json:"role_type"`
+	}
+	CourseData {
+		CourseId    int64   `json:"course_id"`
+		UserId      int64   `json:"user_id"`
+		CourseName  string  `json:"course_name"`
+		Description string  `json:"description"`
+		Price       float64 `json:"price"`
+	}
+	CategoryData {
+		CategoryId   int64  `json:"category_id"`
+		CategoryName string `json:"category_name"`
+	}
+	CourseCategoryData {
+		Id         int64 `json:"id"`
+		CourseId   int64 `json:"course_id"`
+		CategoryId int64 `json:"category_id"`
+	}
+	OrderData {
+		OrderId       int64   `json:"order_id"`
+		UserId        int64   `json:"user_id"`
+		CourseId      int64   `json:"course_id"`
+		PurchaseCount int64   `json:"purchase_count"`
+		TotalPrice    float64 `json:"total_price"`
+	}
+	OrderInfoData {
+		OrderData  *OrderData  `json:"order_data"`
+		UserData   *UserData   `json:"user_data"`
+		CourseData *CourseData `json:"course_data"`
+	}
 )
 
 type (
 	UserRegisterRes {
-		Code int              `json:"code"`
-		Msg  string           `json:"msg"`
-		Data UserRegisterData `json:"data"`
+		Code int               `json:"code"`
+		Msg  string            `json:"msg"`
+		Data *UserRegisterData `json:"data"`
+	}
+
+	UserLoginRes {
+		Code int       `json:"code"`
+		Msg  string    `json:"msg"`
+		Data *UserData `json:"data"`
+	}
+
+	UserUpdatePasswordRes {
+		Code int       `json:"code"`
+		Msg  string    `json:"msg"`
+		Data *UserData `json:"data"`
+	}
+
+	AdminDeleteUserByIdRes {
+		Code int    `json:"code"`
+		Msg  string `json:"msg"`
+	}
+
+	GetUserListRes {
+		Code  int         `json:"code"`
+		Msg   string      `json:"msg"`
+		Data  []*UserData `json:"data"`
+		Total int         `json:"total"`
+	}
+	AdminAddCourseRes {
+		Code int         `json:"code"`
+		Msg  string      `json:"msg"`
+		Data *CourseData `json:"data"`
+	}
+	AdminUpdateCourseRes {
+		Code int         `json:"code"`
+		Msg  string      `json:"msg"`
+		Data *CourseData `json:"data"`
+	}
+	AdminDelCourseRes {
+		Code int    `json:"code"`
+		Msg  string `json:"msg"`
+	}
+	GetCourseListRes {
+		Code  int           `json:"code"`
+		Msg   string        `json:"msg"`
+		Data  []*CourseData `json:"data"`
+		Total int           `json:"total"`
+	}
+	AdminAddCategoryRes {
+		Code int           `json:"code"`
+		Msg  string        `json:"msg"`
+		Data *CategoryData `json:"data"`
+	}
+	AdminUpdateCategoryRes {
+		Code int           `json:"code"`
+		Msg  string        `json:"msg"`
+		Data *CategoryData `json:"data"`
+	}
+	AdminBindCourseCategoryRes {
+		Code int                 `json:"code"`
+		Msg  string              `json:"msg"`
+		Data *CourseCategoryData `json:"data"`
+	}
+	AdminDelCategoryRes {
+		Code int    `json:"code"`
+		Msg  string `json:"msg"`
+	}
+	GetCategoryListRes {
+		Code  int             `json:"code"`
+		Msg   string          `json:"msg"`
+		Data  []*CategoryData `json:"data"`
+		Total int             `json:"total"`
+	}
+	PlaceOrderRes {
+		Code int        `json:"code"`
+		Msg  string     `json:"msg"`
+		Data *OrderData `json:"data"`
+	}
+	GetOrderListRes {
+		Code  int          `json:"code"`
+		Msg   string       `json:"msg"`
+		Data  []*OrderData `json:"data"`
+		Total int          `json:"total"`
+	}
+	CancelOrderRes {
+		Code int    `json:"code"`
+		Msg  string `json:"msg"`
+	}
+	OrderInfoRes {
+		Code int            `json:"code"`
+		Msg  string         `json:"msg"`
+		Data *OrderInfoData `json:"data"`
 	}
 )
 
 service service-api {
 	@handler UserRegister //用户注册
-	post /users/register(UserRegisterReq) returns(UserRegisterRes)
+	post /users/register (UserRegisterReq) returns (UserRegisterRes)
 
+	@handler UserLogin //用户登录
+	post /users/login (UserLoginReq) returns (UserLoginRes)
+
+	@handler UserUpdatePassword //用户修改密码
+	post /users/updatePassword (UserUpdatePasswordReq) returns (UserUpdatePasswordRes)
+
+	@handler AdminDeleteUserById //管理员删除用户
+	post /admin/deleteUserById (AdminDeleteUserByIdReq) returns (AdminDeleteUserByIdRes)
+
+	@handler GetUserList //获取用户列表
+	post /admin/getUserList (GetUserListReq) returns (GetUserListRes)
+
+	@handler AdminAddCourse //管理员添加课程
+	post /admin/addCourse (AdminAddCourseReq) returns (AdminAddCourseRes)
+
+	@handler AdminUpdateCourse //管理员修改课程价格
+	post /admin/updateCourse (AdminUpdateCourseReq) returns (AdminUpdateCourseRes)
+
+	@handler AdminDelCourse //管理员删除课程
+	post /admin/delCourse (AdminDelCourseReq) returns (AdminDelCourseRes)
+
+	@handler GetCourseList //获取课程列表
+	post /admin/getCourseList (GetCourseListReq) returns (GetCourseListRes)
+
+	@handler AdminAddCategory //管理员添加分类
+	post /admin/addCategory (AdminAddCategoryReq) returns (AdminAddCategoryRes)
+
+	@handler AdminUpdateCategory //管理员修改分类名称
+	post /admin/updateCategory (AdminUpdateCategoryReq) returns (AdminUpdateCategoryRes)
+
+	@handler AdminBindCourseCategory //管理员绑定课程分类
+	post /admin/bindCourseCategory (AdminBindCourseCategoryReq) returns (AdminBindCourseCategoryRes)
+
+	@handler AdminDelCategory //管理员删除分类
+	post /admin/delCategory (AdminDelCategoryReq) returns (AdminDelCategoryRes)
+
+	@handler GetCategoryList //获取分类列表
+	post /admin/getCategoryList (GetCategoryListReq) returns (GetCategoryListRes)
+
+	@handler PlaceOrder //下单
+	post /order/placeOrder (PlaceOrderReq) returns (PlaceOrderRes)
+
+	@handler GetOrderList //获取订单列表
+	post /order/getOrderList (GetOrderListReq) returns (GetOrderListRes)
+
+	@handler CancelOrder //取消订单
+	post /order/cancelOrder (CancelOrderReq) returns (CancelOrderRes)
+
+	@handler OrderInfo //订单详情
+	post /order/orderInfo (OrderInfoReq) returns (OrderInfoRes)
 }

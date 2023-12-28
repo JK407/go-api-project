@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `users`
 CREATE TABLE IF NOT EXISTS `courses`
 (
     `course_id`   INT AUTO_INCREMENT COMMENT '课程ID',
-    `user_id` INT  NOT NULL DEFAULT 0 COMMENT '用户ID',
+    `user_id` INT  NOT NULL DEFAULT 0 COMMENT '用户ID；操作人',
     `course_name`  VARCHAR(100) NOT NULL DEFAULT '' COMMENT '课程名称',
     `description`  VARCHAR(100) NOT NULL DEFAULT '' COMMENT '课程描述',
     `price` DECIMAL(10, 2) NOT NULL DEFAULT 0.00 COMMENT '课程价格',
@@ -57,8 +57,8 @@ CREATE TABLE IF NOT EXISTS `orders`
     `order_id`   INT AUTO_INCREMENT COMMENT '订单ID',
     `user_id` INT  NOT NULL DEFAULT 0 COMMENT '用户ID',
     `course_id` INT  NOT NULL DEFAULT 0 COMMENT '课程ID',
-    `purchase_date` INT NOT NULL DEFAULT 0 COMMENT '购买时间',
-    `total_amount` DECIMAL(10, 2) NOT NULL DEFAULT 0.00 COMMENT '订单总额',
+    `purchase_count` INT NOT NULL DEFAULT 0 COMMENT '购买数量',
+    `total_price` DECIMAL(10, 2) NOT NULL DEFAULT 0.00 COMMENT '订单总金额',
     `created_at` INT NOT NULL DEFAULT 0 COMMENT '创建时间',
     `updated_at` INT NOT NULL DEFAULT 0 COMMENT '更新时间',
     `status` INT NOT NULL DEFAULT 0 COMMENT '状态:0下单、1取消订单',

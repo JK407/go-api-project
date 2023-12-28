@@ -8,14 +8,14 @@ const TableNameOrder = "orders"
 
 // Order 课程类别关联表
 type Order struct {
-	OrderID      int64   `gorm:"column:order_id;type:int(11);primaryKey;autoIncrement:true;comment:订单ID" json:"order_id"`       // 订单ID
-	UserID       int64   `gorm:"column:user_id;type:int(11);not null;comment:用户ID" json:"user_id"`                              // 用户ID
-	CourseID     int64   `gorm:"column:course_id;type:int(11);not null;comment:课程ID" json:"course_id"`                          // 课程ID
-	PurchaseDate int64   `gorm:"column:purchase_date;type:int(11);not null;comment:购买时间" json:"purchase_date"`                  // 购买时间
-	TotalAmount  float64 `gorm:"column:total_amount;type:decimal(10,2);not null;default:0.00;comment:订单总额" json:"total_amount"` // 订单总额
-	CreatedAt    int64   `gorm:"column:created_at;type:int(11);not null;comment:创建时间" json:"created_at"`                        // 创建时间
-	UpdatedAt    int64   `gorm:"column:updated_at;type:int(11);not null;comment:更新时间" json:"updated_at"`                        // 更新时间
-	Status       int64   `gorm:"column:status;type:int(11);not null;comment:状态:0下单、1取消订单" json:"status"`                          // 状态:0正常、1禁用
+	OrderID       int64   `gorm:"column:order_id;type:int(11);primaryKey;autoIncrement:true;comment:订单ID" json:"order_id"`      // 订单ID
+	UserID        int64   `gorm:"column:user_id;type:int(11);not null;comment:用户ID" json:"user_id"`                             // 用户ID
+	CourseID      int64   `gorm:"column:course_id;type:int(11);not null;comment:课程ID" json:"course_id"`                         // 课程ID
+	PurchaseCount int64   `gorm:"column:purchase_count;type:int(11);not null;comment:购买数量" json:"purchase_count"`               // 购买数量
+	TotalPrice    float64 `gorm:"column:total_price;type:decimal(10,2);not null;default:0.00;comment:订单总金额" json:"total_price"` // 订单总金额
+	CreatedAt     int64   `gorm:"column:created_at;type:int(11);not null;comment:创建时间" json:"created_at"`                       // 创建时间
+	UpdatedAt     int64   `gorm:"column:updated_at;type:int(11);not null;comment:更新时间" json:"updated_at"`                       // 更新时间
+	Status        int64   `gorm:"column:status;type:int(11);not null;comment:状态:0下单、1取消订单" json:"status"`                       // 状态:0正常、1禁用
 }
 
 // TableName Order's table name

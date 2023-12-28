@@ -2,7 +2,7 @@ package logic
 
 import (
 	"context"
-	"go_project/internal/model/model"
+	"go_project/internal/repository"
 
 	"go_project/internal/svc"
 	"go_project/internal/types"
@@ -14,18 +14,16 @@ type UserRegisterLogic struct {
 	logx.Logger
 	ctx      context.Context
 	svcCtx   *svc.ServiceContext
-	UserRepo model.UserRepositoryImpl
+	UserRepo repository.UserRepository
 }
 
 func NewUserRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserRegisterLogic {
+	userRepo := repository.NewUserRepository(svcCtx.Gdb, svcCtx.Rdb)
 	return &UserRegisterLogic{
-		Logger: logx.WithContext(ctx),
-		ctx:    ctx,
-		svcCtx: svcCtx,
-		UserRepo: model.UserRepositoryImpl{
-			UserDB:    svcCtx.Gdb,
-			UserRedis: svcCtx.Rdb,
-		},
+		Logger:   logx.WithContext(ctx),
+		ctx:      ctx,
+		svcCtx:   svcCtx,
+		UserRepo: userRepo,
 	}
 }
 
@@ -37,5 +35,5 @@ func NewUserRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *User
 // @Return err
 func (l *UserRegisterLogic) UserRegister(req *types.UserRegisterReq) (resp *types.UserRegisterRes, err error) {
 	resp, _ = l.UserRepo.UserRegister(l.ctx, req)
-	return resp, nil
+	return
 }

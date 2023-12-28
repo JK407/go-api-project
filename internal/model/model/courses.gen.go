@@ -9,7 +9,7 @@ const TableNameCourse = "courses"
 // Course 课程表
 type Course struct {
 	CourseID    int64   `gorm:"column:course_id;type:int(11);primaryKey;autoIncrement:true;comment:课程ID" json:"course_id"` // 课程ID
-	UserID      int64   `gorm:"column:user_id;type:int(11);not null;comment:用户ID" json:"user_id"`                          // 用户ID
+	UserID      int64   `gorm:"column:user_id;type:int(11);not null;comment:用户ID；操作人" json:"user_id"`                      // 用户ID；操作人
 	CourseName  string  `gorm:"column:course_name;type:varchar(100);not null;comment:课程名称" json:"course_name"`             // 课程名称
 	Description string  `gorm:"column:description;type:varchar(100);not null;comment:课程描述" json:"description"`             // 课程描述
 	Price       float64 `gorm:"column:price;type:decimal(10,2);not null;default:0.00;comment:课程价格" json:"price"`           // 课程价格

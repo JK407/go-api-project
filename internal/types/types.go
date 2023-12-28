@@ -9,12 +9,266 @@ type UserRegisterReq struct {
 	RoleType int    `json:"role_type"`
 }
 
+type UserLoginReq struct {
+	Phone    string `json:"phone"`
+	Password string `json:"password"`
+}
+
+type UserUpdatePasswordReq struct {
+	Phone       string `json:"phone"`
+	Password    string `json:"password"`
+	NewPassword string `json:"new_password"`
+}
+
+type AdminDeleteUserByIdReq struct {
+	UserId   int64  `json:"user_id"`
+	Phone    string `json:"phone"`
+	Password string `json:"password"`
+}
+
+type GetUserListReq struct {
+	Page    int    `json:"page"`
+	Size    int    `json:"size"`
+	Keyword string `json:"keyword"`
+}
+
+type AdminAddCourseReq struct {
+	CourseName  string  `json:"course_name"`
+	Description string  `json:"description"`
+	Price       float64 `json:"price"`
+	Phone       string  `json:"phone"`
+	Password    string  `json:"password"`
+}
+
+type AdminUpdateCourseReq struct {
+	Phone    string  `json:"phone"`
+	Password string  `json:"password"`
+	Price    float64 `json:"price"`
+	CourseId int     `json:"course_id"`
+}
+
+type AdminDelCourseReq struct {
+	Phone    string `json:"phone"`
+	Password string `json:"password"`
+	CourseId int    `json:"course_id"`
+}
+
+type GetCourseListReq struct {
+	Page    int    `json:"page"`
+	Size    int    `json:"size"`
+	Keyword string `json:"keyword"`
+}
+
+type AdminAddCategoryReq struct {
+	Phone        string `json:"phone"`
+	Password     string `json:"password"`
+	CategoryName string `json:"category_name"`
+}
+
+type AdminUpdateCategoryReq struct {
+	Phone        string `json:"phone"`
+	Password     string `json:"password"`
+	CategoryId   int    `json:"category_id"`
+	CategoryName string `json:"category_name"`
+}
+
+type AdminBindCourseCategoryReq struct {
+	Phone      string `json:"phone"`
+	Password   string `json:"password"`
+	CourseId   int    `json:"course_id"`
+	CategoryId int    `json:"category_id"`
+}
+
+type AdminDelCategoryReq struct {
+	Phone      string `json:"phone"`
+	Password   string `json:"password"`
+	CategoryId int    `json:"category_id"`
+}
+
+type GetCategoryListReq struct {
+	Page    int    `json:"page"`
+	Size    int    `json:"size"`
+	Keyword string `json:"keyword"`
+}
+
+type PlaceOrderReq struct {
+	Phone         string `json:"phone"`
+	Password      string `json:"password"`
+	CourseId      int64  `json:"course_id"`
+	PurchaseCount int64  `json:"purchase_count"`
+}
+
+type GetOrderListReq struct {
+	Page int `json:"page"`
+	Size int `json:"size"`
+}
+
+type CancelOrderReq struct {
+	Phone    string `json:"phone"`
+	Password string `json:"password"`
+	OrderId  int64  `json:"order_id"`
+}
+
+type OrderInfoReq struct {
+	Phone    string `json:"phone"`
+	Password string `json:"password"`
+	OrderId  int64  `json:"order_id"`
+}
+
 type UserRegisterData struct {
 	UserId int64 `json:"user_id"`
 }
 
+type UserData struct {
+	UserId   int64    `json:"user_id"`
+	Username string   `json:"username"`
+	Email    string   `json:"email"`
+	Phone    string   `json:"phone"`
+	Role     RoleData `json:"role"`
+}
+
+type RoleData struct {
+	RoleName string `json:"role_name"`
+	RoleType int    `json:"role_type"`
+}
+
+type CourseData struct {
+	CourseId    int64   `json:"course_id"`
+	UserId      int64   `json:"user_id"`
+	CourseName  string  `json:"course_name"`
+	Description string  `json:"description"`
+	Price       float64 `json:"price"`
+}
+
+type CategoryData struct {
+	CategoryId   int64  `json:"category_id"`
+	CategoryName string `json:"category_name"`
+}
+
+type CourseCategoryData struct {
+	Id         int64 `json:"id"`
+	CourseId   int64 `json:"course_id"`
+	CategoryId int64 `json:"category_id"`
+}
+
+type OrderData struct {
+	OrderId       int64   `json:"order_id"`
+	UserId        int64   `json:"user_id"`
+	CourseId      int64   `json:"course_id"`
+	PurchaseCount int64   `json:"purchase_count"`
+	TotalPrice    float64 `json:"total_price"`
+}
+
+type OrderInfoData struct {
+	OrderData  *OrderData  `json:"order_data"`
+	UserData   *UserData   `json:"user_data"`
+	CourseData *CourseData `json:"course_data"`
+}
+
 type UserRegisterRes struct {
-	Code int              `json:"code"`
-	Msg  string           `json:"msg"`
-	Data UserRegisterData `json:"data"`
+	Code int               `json:"code"`
+	Msg  string            `json:"msg"`
+	Data *UserRegisterData `json:"data"`
+}
+
+type UserLoginRes struct {
+	Code int       `json:"code"`
+	Msg  string    `json:"msg"`
+	Data *UserData `json:"data"`
+}
+
+type UserUpdatePasswordRes struct {
+	Code int       `json:"code"`
+	Msg  string    `json:"msg"`
+	Data *UserData `json:"data"`
+}
+
+type AdminDeleteUserByIdRes struct {
+	Code int    `json:"code"`
+	Msg  string `json:"msg"`
+}
+
+type GetUserListRes struct {
+	Code  int         `json:"code"`
+	Msg   string      `json:"msg"`
+	Data  []*UserData `json:"data"`
+	Total int         `json:"total"`
+}
+
+type AdminAddCourseRes struct {
+	Code int         `json:"code"`
+	Msg  string      `json:"msg"`
+	Data *CourseData `json:"data"`
+}
+
+type AdminUpdateCourseRes struct {
+	Code int         `json:"code"`
+	Msg  string      `json:"msg"`
+	Data *CourseData `json:"data"`
+}
+
+type AdminDelCourseRes struct {
+	Code int    `json:"code"`
+	Msg  string `json:"msg"`
+}
+
+type GetCourseListRes struct {
+	Code  int           `json:"code"`
+	Msg   string        `json:"msg"`
+	Data  []*CourseData `json:"data"`
+	Total int           `json:"total"`
+}
+
+type AdminAddCategoryRes struct {
+	Code int           `json:"code"`
+	Msg  string        `json:"msg"`
+	Data *CategoryData `json:"data"`
+}
+
+type AdminUpdateCategoryRes struct {
+	Code int           `json:"code"`
+	Msg  string        `json:"msg"`
+	Data *CategoryData `json:"data"`
+}
+
+type AdminBindCourseCategoryRes struct {
+	Code int                 `json:"code"`
+	Msg  string              `json:"msg"`
+	Data *CourseCategoryData `json:"data"`
+}
+
+type AdminDelCategoryRes struct {
+	Code int    `json:"code"`
+	Msg  string `json:"msg"`
+}
+
+type GetCategoryListRes struct {
+	Code  int             `json:"code"`
+	Msg   string          `json:"msg"`
+	Data  []*CategoryData `json:"data"`
+	Total int             `json:"total"`
+}
+
+type PlaceOrderRes struct {
+	Code int        `json:"code"`
+	Msg  string     `json:"msg"`
+	Data *OrderData `json:"data"`
+}
+
+type GetOrderListRes struct {
+	Code  int          `json:"code"`
+	Msg   string       `json:"msg"`
+	Data  []*OrderData `json:"data"`
+	Total int          `json:"total"`
+}
+
+type CancelOrderRes struct {
+	Code int    `json:"code"`
+	Msg  string `json:"msg"`
+}
+
+type OrderInfoRes struct {
+	Code int            `json:"code"`
+	Msg  string         `json:"msg"`
+	Data *OrderInfoData `json:"data"`
 }

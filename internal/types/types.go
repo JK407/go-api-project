@@ -160,27 +160,27 @@ type OrderData struct {
 }
 
 type OrderInfoData struct {
-	OrderData  *OrderData  `json:"order_data"`
-	UserData   *UserData   `json:"user_data"`
-	CourseData *CourseData `json:"course_data"`
+	OrderData  *OrderData  `json:"order_data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
+	UserData   *UserData   `json:"user_data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
+	CourseData *CourseData `json:"course_data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
 }
 
 type UserRegisterRes struct {
 	Code int               `json:"code"`
 	Msg  string            `json:"msg"`
-	Data *UserRegisterData `json:"data"`
+	Data *UserRegisterData `json:"data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
 }
 
 type UserLoginRes struct {
 	Code int       `json:"code"`
 	Msg  string    `json:"msg"`
-	Data *UserData `json:"data"`
+	Data *UserData `json:"data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
 }
 
 type UserUpdatePasswordRes struct {
 	Code int       `json:"code"`
 	Msg  string    `json:"msg"`
-	Data *UserData `json:"data"`
+	Data *UserData `json:"data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
 }
 
 type AdminDeleteUserByIdRes struct {
@@ -191,20 +191,20 @@ type AdminDeleteUserByIdRes struct {
 type GetUserListRes struct {
 	Code  int         `json:"code"`
 	Msg   string      `json:"msg"`
-	Data  []*UserData `json:"data"`
+	Data  []*UserData `json:"data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
 	Total int         `json:"total"`
 }
 
 type AdminAddCourseRes struct {
 	Code int         `json:"code"`
 	Msg  string      `json:"msg"`
-	Data *CourseData `json:"data"`
+	Data *CourseData `json:"data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
 }
 
 type AdminUpdateCourseRes struct {
 	Code int         `json:"code"`
 	Msg  string      `json:"msg"`
-	Data *CourseData `json:"data"`
+	Data *CourseData `json:"data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
 }
 
 type AdminDelCourseRes struct {
@@ -215,26 +215,26 @@ type AdminDelCourseRes struct {
 type GetCourseListRes struct {
 	Code  int           `json:"code"`
 	Msg   string        `json:"msg"`
-	Data  []*CourseData `json:"data"`
+	Data  []*CourseData `json:"data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
 	Total int           `json:"total"`
 }
 
 type AdminAddCategoryRes struct {
 	Code int           `json:"code"`
 	Msg  string        `json:"msg"`
-	Data *CategoryData `json:"data"`
+	Data *CategoryData `json:"data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
 }
 
 type AdminUpdateCategoryRes struct {
 	Code int           `json:"code"`
 	Msg  string        `json:"msg"`
-	Data *CategoryData `json:"data"`
+	Data *CategoryData `json:"data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
 }
 
 type AdminBindCourseCategoryRes struct {
 	Code int                 `json:"code"`
 	Msg  string              `json:"msg"`
-	Data *CourseCategoryData `json:"data"`
+	Data *CourseCategoryData `json:"data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
 }
 
 type AdminDelCategoryRes struct {
@@ -245,20 +245,20 @@ type AdminDelCategoryRes struct {
 type GetCategoryListRes struct {
 	Code  int             `json:"code"`
 	Msg   string          `json:"msg"`
-	Data  []*CategoryData `json:"data"`
+	Data  []*CategoryData `json:"data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
 	Total int             `json:"total"`
 }
 
 type PlaceOrderRes struct {
 	Code int        `json:"code"`
 	Msg  string     `json:"msg"`
-	Data *OrderData `json:"data"`
+	Data *OrderData `json:"data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
 }
 
 type GetOrderListRes struct {
 	Code  int          `json:"code"`
 	Msg   string       `json:"msg"`
-	Data  []*OrderData `json:"data"`
+	Data  []*OrderData `json:"data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
 	Total int          `json:"total"`
 }
 
@@ -270,5 +270,5 @@ type CancelOrderRes struct {
 type OrderInfoRes struct {
 	Code int            `json:"code"`
 	Msg  string         `json:"msg"`
-	Data *OrderInfoData `json:"data"`
+	Data *OrderInfoData `json:"data,omitempty"` // 使用指针类型表示可选字段，并使用omitempty忽略空值
 }
